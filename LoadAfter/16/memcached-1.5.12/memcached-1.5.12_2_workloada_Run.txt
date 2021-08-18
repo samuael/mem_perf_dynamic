@@ -1,0 +1,28 @@
+[WARN]  Running against a source checkout. In order to get our runtime dependencies we'll have to invoke Maven. Depending on the state of your system, this may take ~30-45 seconds
+[DEBUG]  Running 'mvn -pl site.ycsb:memcached-binding -am package -DskipTests dependency:build-classpath -DincludeScope=compile -Dmdep.outputFilterFile=true'
+Traceback (most recent call last):
+  File "./bin/ycsb", line 325, in <module>
+    sys.exit(main())
+  File "./bin/ycsb", line 298, in main
+    maven_says = get_classpath_from_maven(project)
+  File "./bin/ycsb", line 218, in get_classpath_from_maven
+    "-Dmdep.outputFilterFile=true"])
+  File "./bin/ycsb", line 167, in check_output
+    process = subprocess.Popen(stdout=subprocess.PIPE, *popenargs, **kwargs)
+  File "/usr/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/usr/lib/python2.7/subprocess.py", line 1047, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+
+ Performance counter stats for 'CPU(s) 2-17':
+
+          18866534      cycles                                                        (62.93%)
+            408314      branches                                                      (69.10%)
+             62776      branch-misses             #   15.37% of all branches          (72.53%)
+            340853      branch-loads                                                  (72.48%)
+             62804      branch-load-misses                                            (67.77%)
+            152074      L1-icache-load-misses                                         (61.73%)
+
+       0.060904849 seconds time elapsed
+

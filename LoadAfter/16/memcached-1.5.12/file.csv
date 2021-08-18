@@ -1,0 +1,7 @@
+branch-loads,	1717692
+L1-icache-load-misses,	176539
+branches,	2013049
+branch-load-misses,	92825
+branch-misses,	131434
+branch-misses-(%),	10.9044444444
+cycles,	27821028
