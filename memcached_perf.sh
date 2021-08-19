@@ -55,12 +55,13 @@ do
                                 # make the new directory and isntall it using make install 
                                 for workload in  workloada workloadb workloadc workloadd workloade workloadf;
                                 do 
-                                        sudo perf stat -C ${CPUSET}  -e cycles,branches,branch-misses,branch-loads,branch-load-misses,L1-icache-load-misses -- sudo ./bin/ycsb load memcached --threads=${thread} -s -P $1/$workload  -p "memcached.hosts=127.0.0.1:11211" &> /dev/null;
+                                        sudo perf stat -a  -C ${CPUSET}  -e cycles,branches,branch-misses,branch-loads,branch-load-misses,L1-icache-load-misses --no-big-num -- sudo ./bin/ycsb load memcached --threads ${thread} -s -P $1/$workload  -p "memcached.hosts=127.0.0.1:11211" &> /dev/null;
                                         if [ $release  = "Begin" ]
                                         then 
-                                                sudo perf stat -C ${CPUSET} -e cycles,branches,branch-misses,branch-loads,branch-load-misses,L1-icache-load-misses -- sudo ./bin/ycsb run memcached  --threads=${thread} -s -P  $1/$workload  -p "memcached.hosts=127.0.0.1:11211" &> output/$category/$thread/$release/${release}_${workload}_Run.txt;
+
+                                                sudo perf stat -a -C ${CPUSET} -e cycles,branches,branch-misses,branch-loads,branch-load-misses,L1-icache-load-misses  --no-big-num  -- sudo ./bin/ycsb run memcached  --threads ${thread} -s -P  $1/$workload  -p "memcached.hosts=127.0.0.1:11211" &> output/$category/$thread/$release/${release}_${workload}_Run.txt;
                                         else 
-                                                sudo perf stat -C ${CPUSET} -e  cycles,branches,branch-misses,branch-loads,branch-load-misses,L1-icache-load-misses -- sudo ./bin/ycsb run memcached  --threads=${thread} -s -P  $1/$workload  -p "memcached.hosts=127.0.0.1:11211" &> output/$category/$thread/$release/${release}_${emit}_${workload}_Run.txt;
+                                                sudo perf stat -a -C ${CPUSET} -e  cycles,branches,branch-misses,branch-loads,branch-load-misses,L1-icache-load-misses --no-big-num -- sudo ./bin/ycsb run memcached  --threads ${thread} -s -P  $1/$workload  -p "memcached.hosts=127.0.0.1:11211" &> output/$category/$thread/$release/${release}_${emit}_${workload}_Run.txt;
                                         fi 
                                 done 
                         done 
